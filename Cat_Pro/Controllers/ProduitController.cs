@@ -48,6 +48,7 @@ namespace Cat_Pro.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Produit p)
         {
             if (ModelState.IsValid)
@@ -74,6 +75,7 @@ namespace Cat_Pro.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Produit p)
         {
             if (ModelState.IsValid)
