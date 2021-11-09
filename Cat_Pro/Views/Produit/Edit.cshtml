@@ -1,0 +1,35 @@
+﻿@model Produit
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4 class="text-primary mt-5">Modification d un objet</h4>
+
+<form method="post" asp-action="Update">
+    <div class="border p-3 mt-4">
+
+        <div class="mb-3">
+            <label>Produit ID</label>
+            <input asp-for="ProduitID" class="form-control" disabled />
+            <span asp-validation-for="ProduitID" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label>DisplayOrder</label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label>Prix</label>
+            <input asp-for="Prix" class="form-control" />
+            <span asp-validation-for="Prix" class="text-danger"></span>
+
+        </div>
+        <button type="submit" class="btn btn-primary" style="Width:150px">Save</button>
+        <a asp-controller="Produit" asp-action="Index" class="btn btn-secondary" style="Width:150px"> Back to List</a>
+
+    </div>
+
+</form>
+

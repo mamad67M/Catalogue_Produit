@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Cat_Pro.Models.Produit>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3 ">
+    <div class="row pb-4">
+        <div class="col-6 "><h4 class="text-info">Liste des produits</h4></div>
+        <div class="col-6 text-end" >
+        <a asp-controller="Produit" asp-action="AjoutNProd" class="btn btn-success">Ajouter Produit</a>
+        </div>
+    </div>
+
+    <div class="container pb-2">
+        <form method="post" asp-action="Chercher">
+            <div class="form-group">
+                <label style="padding-right:4px">Mot clé: </label>
+                <input type="text" name="motCle" value="@Html.ViewBag.motCle" placeholder="mot Cle"/>
+                <button type="submit" class="btn btn-primary">Chercher</button>
+                @Html.ValidationMessage("motCle", new { @class = "text-danger" })
+            </div>
+        </form>
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+
+
+        <table class="table table-striped" style="width:100%">
+            <thead>
+                <tr class="text-center">
+                    <th width="20%">@Html.DisplayNameFor(model => model.ProduitID)</th>
+                    <th width="25%">@Html.DisplayNameFor(model => model.Description)</th>
+                    <th width="25%">@Html.DisplayNameFor(model => model.Prix)</th>
+                    <th width="30%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var obj in Model)
+                {
+                    <tr class=" text-center">
+                        <td>@obj.ProduitID</td>
+                        <td>@obj.Description</td>
+                        <td>@obj.Prix</td>
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Produit" asp-action="Edit" asp-route-id="@obj.ProduitID" class="btn btn-info mx-2">Edit</a>
+                                <a asp-controller="Produit" asp-action="Delete" asp-route-id="@obj.ProduitID" class="btn btn-danger mx-2" onclick="return confirm('êtes vous sûre de vouloir supprimer cet objet?');">Delete</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> Produit non trouvé</p>
+    }
+
+</div>
